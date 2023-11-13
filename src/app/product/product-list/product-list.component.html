@@ -1,0 +1,50 @@
+<div class="container my-5">
+	<div class="p-5 text-center bg-body-tertiary rounded-3">
+		<h1 class="text-body-emphasis border-bottom py-4">Product list</h1>
+		<div id="sort-div" class="col-4">
+			<label>Sort by name:</label>
+			<select class="form-select m-3 justify-content" (change)="selectTypeSort($event)">
+				<option default>Choose a type</option>
+				<option value="ASC">Ascending order</option>
+				<option value="DESC">Descending order</option>
+			</select>
+			<span><p *ngIf=selectedTypeSort><b>You selected: {{selectedTypeSort}}</b></p></span>
+			<button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 mb-4 rounded-pill"  
+			(click)="sortProductsByName(selectedTypeSort!)" type="button">
+				Sort
+			</button>
+		</div>
+		<div id="filter-div" class="col-4">
+			<label>Filter by slug:</label>
+			<input class="form-control m-3" [value]="inputWord" 
+			placeholder="Enter a slug name to filter..."
+			(input)="inputWord = getValue($event)!">
+			<span><p *ngIf=inputWord><b>Your input is: {{inputWord}}</b></p></span>
+			<button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 mb-4 rounded-pill" 
+			(click)="filterProductsBySlug(inputWord!)" type="button">
+				Filter
+		</button>
+		</div>
+		<table class="table table-bordered table-striped text-center my-2 align-middle">
+			<thead class="table-active">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor = "let product of products">
+					<td scope="col">{{product.id}}</td>
+					<td scope="col">{{product.name}}</td>
+					<td scope="col">
+						<button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"  
+						routerLink="../product/{{product.id}}" type="button">
+							See product details
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

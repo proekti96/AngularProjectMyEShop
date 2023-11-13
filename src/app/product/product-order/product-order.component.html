@@ -1,0 +1,34 @@
+<div class="container my-5">
+	<div class="p-5 text-center bg-body-tertiary rounded-3">
+		<h1 class="text-body-emphasis my-4">Order details</h1>
+		<table class="table table-success table-bordered table-striped text-center my-2 align-middle">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let product of productsOrder">
+					<td scope="col">{{ product.id }}</td>
+					<td scope="col">{{ product.name }}</td>
+					<td scope="col">
+						<button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" 
+						routerLink="../product/{{ product.id }}" type="button">
+							See product details
+						</button> 
+						<button class="d-inline-flex align-items-center btn btn-danger btn-lg px-4 mx-4 rounded-pill" 
+						(click)="removeProductFromOrder(product.id!)" type="button">
+							Remove product	
+						</button> 
+					</td> 
+				</tr>		
+			</tbody>
+		</table>
+		<button class="d-inline-flex align-items-center btn btn-danger btn-lg px-4 my-4 rounded-pill" 
+		(click)="removeAllProductsFromOrder()" type="button">
+			Remove all products from the order
+		</button> 
+	</div>
+</div>
